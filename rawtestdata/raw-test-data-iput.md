@@ -34,14 +34,14 @@ $ /usr/bin/time iput -rb /eudatCache/perftest/300k
 14.84user 550.02system 2:33:31elapsed 6%CPU (0avgtext+0avgdata 33328maxresident)k
 614573304inputs+0outputs (38major+29379minor)pagefaults 0swaps
 ```
-### 600k bulk: 
+#### 600k bulk: 
 ```
 $ /usr/bin/time iput -rb /eudatCache/perftest/600k
 29.79user 1086.91system 5:16:12elapsed 5%CPU (0avgtext+0avgdata 34272maxresident)k
 1229175544inputs+0outputs (38major+44399minor)pagefaults 0swaps
 ```
 
-### One million bulk: 
+#### One million bulk: 
 ```
 $ /usr/bin/time iput -rb /eudatCache/perftest/onemil
 50.60user 1806.56system 8:49:08elapsed 5%CPU (0avgtext+0avgdata 34840maxresident)k
@@ -49,7 +49,7 @@ $ /usr/bin/time iput -rb /eudatCache/perftest/onemil
 ```
 
 
-### One million files with 8 parallel iputs in different directories:
+#### One million files with 8 parallel iputs in different directories:
 
 ```
 1. 13.75user 382.24system 2:52:55elapsed 3%CPU (0avgtext+0avgdata 33744maxresident)k
@@ -77,7 +77,7 @@ $ /usr/bin/time iput -rb /eudatCache/perftest/onemil
 819824792inputs+113640outputs (1major+10675minor)pagefaults 0swaps
 ```
 
-#### Summary table: 
+### Summary table: 
 
 | Operation | Filecount | Time | Table growth (MB) |
 | ------------- | ------------- |------------- |------------- |
