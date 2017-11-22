@@ -1,7 +1,7 @@
 # irods-perf-test
 iRODS performance test scripts
 
-This is a collection of scripts and procedures that run various iRODS commands (such as iput, iquest) and records the timing information. I also provide some queries and configuration information regarding postgres performance. 
+This is a collection of scripts and procedures for running various iRODS commands (such as iput, iquest) and recording the timing information. The goal is to understand how iRODs is performing in various cases. I also provide some queries and configuration information regarding postgres. 
 
 ## Getting Started
 The scripts here will create the test files and run the irods operations. I also describe the operations in detail so one can run them without the scripts as well. 
