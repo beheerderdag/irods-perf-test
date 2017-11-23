@@ -124,6 +124,13 @@ META_DATA_ATTR_VALUE = 400045
 0.27
 ```
 
+You can use the script I have here to run all the iquest commands and it will save the timing information. See the rawtestdata for a test-run output. 
+
+```
+sh run-iquest-test.sh test-run
+```
+
+
 ## Table size 
 
 As I was adding more and more files to irods via iput I was also keep track of various table size growth, in particular the r_data_main table size. pg_total_relation_size index+table. 
