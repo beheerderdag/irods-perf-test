@@ -72,7 +72,7 @@ Bulk upload 50 files.
 ```
 23.80 seconds is the time we want to capture. 
 
-If you want to capture this is a file to keep the record, run this (without the verbose option and redirecting the output to a file: 
+If you want to capture this in a file to keep the record run the following (redirect the output to a file and omit the verbose output: 
 
 ``` 
 $ date >> mytest.out ; echo "iput 1000 files test" >> mytest.out ; /usr/bin/time -f "%e" iput -r -b test.1000 2>>mytest.out 
@@ -82,7 +82,7 @@ Thu Nov 23 12:54:58 CET 2017
 iput 1000 files test
 23.87
 ```
-You can repeat the test with a different number of file count and keep collecting the data in this manner. 
+You can repeat this test with a different file count, size and keep collecting the data in this manner. 
 
 ## Add some metadata 
 
@@ -124,4 +124,21 @@ META_DATA_ATTR_VALUE = 400045
 0.27
 ```
 
+## Table size 
 
+As I was adding more and more files to irods via iput I was also keep track of various table size growth, in particular the r_data_main table size. pg_total_relation_size index+table. 
+
+```
+
+ICAT=# SELECT pg_size_pretty(pg_relation_size('"public"."r_data_main"'));
+ pg_size_pretty 
+----------------
+ 1515 MB
+(1 row)
+
+ICAT=# SELECT pg_size_pretty(pg_total_relation_size('"public"."r_data_main"'));
+ pg_size_pretty 
+----------------
+ 2885 MB
+ ```
+ 
