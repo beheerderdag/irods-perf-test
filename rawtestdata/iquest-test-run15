@@ -1,0 +1,55 @@
+$ cat test-run15 
+DATA_NAME = 7145753
+------------------------------------------------------------
+META_DATA_ATTR_NAME = 400042
+------------------------------------------------------------
+RESC_NAME = 15
+------------------------------------------------------------
+== Q1 count all data_name == 
+Wed Aug 30 09:26:20 CEST 2017
+2.21
+== Q2 count all users ==
+Wed Aug 30 09:26:22 CEST 2017
+0.10
+== Q3  count all metadata == 
+Wed Aug 30 09:26:22 CEST 2017
+0.29
+== Q4 sum data size ==
+Wed Aug 30 09:26:22 CEST 2017
+4.24
+== Q5 order by create time ==
+Wed Aug 30 09:26:26 CEST 2017
+553.49
+== Q6 data path query with count ==
+Wed Aug 30 09:35:40 CEST 2017
+2.84
+== Q7 data path query with details ==
+Wed Aug 30 09:35:43 CEST 2017
+4.06
+== Q8 list all meta data ==
+Wed Aug 30 09:35:47 CEST 2017
+3.75
+== Q9 meta data filter by value ==
+Wed Aug 30 09:35:51 CEST 2017
+0.34
+== Q10 data path filter by value ==
+Wed Aug 30 09:35:51 CEST 2017
+55.25
+== Q11 resource name and meta data look up ==
+Wed Aug 30 09:36:46 CEST 2017
+40.85
+== Q12 OR filter meta data value ==
+Wed Aug 30 09:37:27 CEST 2017
+0.39
+== Q13 COLL name filter ==
+Wed Aug 30 09:37:27 CEST 2017
+0.16
+== Q14 count COLL name and filter ==
+Wed Aug 30 09:37:28 CEST 2017
+0.16
+== Q15 Lookup one meta data name ==
+Wed Aug 30 09:37:28 CEST 2017
+9.60
+== Q16 Lookup one meta data value name ==
+Wed Aug 30 09:37:37 CEST 2017
+6.58
