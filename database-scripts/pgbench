@@ -1,0 +1,193 @@
+export PATH=$PATH:/usr/pgsql-9.3/bin/
+
+postgres=# CREATE DATABASE bench ;
+CREATE DATABASE
+
+postgres$ pgbench -i -s 100 bench 
+NOTICE:  table "pgbench_history" does not exist, skipping
+NOTICE:  table "pgbench_tellers" does not exist, skipping
+NOTICE:  table "pgbench_accounts" does not exist, skipping
+NOTICE:  table "pgbench_branches" does not exist, skipping
+creating tables...
+100000 of 10000000 tuples (1%) done (elapsed 0.20 s, remaining 20.05 s).
+200000 of 10000000 tuples (2%) done (elapsed 0.42 s, remaining 20.67 s).
+300000 of 10000000 tuples (3%) done (elapsed 0.60 s, remaining 19.43 s).
+400000 of 10000000 tuples (4%) done (elapsed 0.71 s, remaining 17.05 s).
+500000 of 10000000 tuples (5%) done (elapsed 0.82 s, remaining 15.59 s).
+600000 of 10000000 tuples (6%) done (elapsed 0.93 s, remaining 14.50 s).
+700000 of 10000000 tuples (7%) done (elapsed 1.04 s, remaining 13.77 s).
+800000 of 10000000 tuples (8%) done (elapsed 1.14 s, remaining 13.12 s).
+900000 of 10000000 tuples (9%) done (elapsed 1.25 s, remaining 12.65 s).
+
+9500000 of 10000000 tuples (95%) done (elapsed 10.72 s, remaining 0.56 s).
+9600000 of 10000000 tuples (96%) done (elapsed 10.82 s, remaining 0.45 s).
+9700000 of 10000000 tuples (97%) done (elapsed 10.94 s, remaining 0.34 s).
+9800000 of 10000000 tuples (98%) done (elapsed 11.04 s, remaining 0.23 s).
+9900000 of 10000000 tuples (99%) done (elapsed 11.16 s, remaining 0.11 s).
+10000000 of 10000000 tuples (100%) done (elapsed 11.26 s, remaining 0.00 s).
+vacuum...
+set primary keys...
+done.
+
+base run (with default setup) 
+
+postgres$ cat pgbench/pgbenchreport.txt 
+transaction type: TPC-B (sort of)
+scaling factor: 100
+query mode: simple
+number of clients: 10
+number of threads: 2
+number of transactions per client: 10000
+number of transactions actually processed: 100000/100000
+tps = 1029.431795 (including connections establishing)
+tps = 1029.653973 (excluding connections establishing)
+
+with this setup 
+```
+max_connections = 100
+shared_buffers = 16GB
+effective_cache_size = 48GB
+work_mem = 83886kB
+maintenance_work_mem = 2GB
+checkpoint_segments = 32
+checkpoint_completion_target = 0.9
+wal_buffers = 16MB
+default_statistics_target = 100
+```
+
+postgres$ pgbench -i -s 100 bench
+creating tables...
+100000 of 10000000 tuples (1%) done (elapsed 0.11 s, remaining 10.43 s).
+200000 of 10000000 tuples (2%) done (elapsed 0.22 s, remaining 10.59 s).
+300000 of 10000000 tuples (3%) done (elapsed 0.33 s, remaining 10.54 s).
+400000 of 10000000 tuples (4%) done (elapsed 0.44 s, remaining 10.51 s).
+500000 of 10000000 tuples (5%) done (elapsed 0.54 s, remaining 10.34 s).
+600000 of 10000000 tuples (6%) done (elapsed 0.66 s, remaining 10.28 s).
+700000 of 10000000 tuples (7%) done (elapsed 0.76 s, remaining 10.12 s).
+800000 of 10000000 tuples (8%) done (elapsed 0.98 s, remaining 11.31 s).
+900000 of 10000000 tuples (9%) done (elapsed 1.21 s, remaining 12.19 s).
+...
+
+9300000 of 10000000 tuples (93%) done (elapsed 12.55 s, remaining 0.94 s).
+9400000 of 10000000 tuples (94%) done (elapsed 12.66 s, remaining 0.81 s).
+9500000 of 10000000 tuples (95%) done (elapsed 12.77 s, remaining 0.67 s).
+9600000 of 10000000 tuples (96%) done (elapsed 12.88 s, remaining 0.54 s).
+9700000 of 10000000 tuples (97%) done (elapsed 12.99 s, remaining 0.40 s).
+9800000 of 10000000 tuples (98%) done (elapsed 13.11 s, remaining 0.27 s).
+9900000 of 10000000 tuples (99%) done (elapsed 13.22 s, remaining 0.13 s).
+10000000 of 10000000 tuples (100%) done (elapsed 13.33 s, remaining 0.00 s).
+vacuum...
+set primary keys...
+done.
+
+
+postgres$ iostat -xk 1 120 > pgbench/iostat1.log &
+[1] 4672
+```
+postgres$ cat pgbench/pgbenchreport1.txt 
+transaction type: TPC-B (sort of)
+scaling factor: 100
+query mode: simple
+number of clients: 10
+number of threads: 2
+number of transactions per client: 10000
+number of transactions actually processed: 100000/100000
+tps = 93.912106 (including connections establishing)
+tps = 93.913931 (excluding connections establishing)
+```
+default but changing shared_buffer 
+
+shared_buffers = 512MB
+
+
+
+postgres$ pgbench -c 10 -j 2 -t 10000 bench
+starting vacuum...end.
+transaction type: TPC-B (sort of)
+scaling factor: 100
+query mode: simple
+number of clients: 10
+number of threads: 2
+number of transactions per client: 10000
+number of transactions actually processed: 100000/100000
+tps = 1005.345856 (including connections establishing)
+tps = 1005.543637 (excluding connections establishing)
+
+
+best so far 
+
+shared_buffers = 16MB 
+work_mem = 128kB 
+maintenance_work_mem = 16MB 
+checkpoint_segments = 8 
+
+
+postgres$ pgbench -c 10 -j 2 -t 10000 bench
+starting vacuum...end.
+transaction type: TPC-B (sort of)
+scaling factor: 100
+query mode: simple
+number of clients: 10
+number of threads: 2
+number of transactions per client: 10000
+number of transactions actually processed: 100000/100000
+tps = 1371.121346 (including connections establishing)
+tps = 1371.491575 (excluding connections establishing)
+
+
+shared_buffers = 16MB 
+work_mem = 128kB # min 64kB
+maintenance_work_mem = 1MB 
+checkpoint_segments = 8 
+
+16:16 irods2.storage.surfsara.nl:/var/lib/pgsql/bench
+postgres$ pgbench -c 10 -j 2 -t 10000 bench
+starting vacuum...end.
+transaction type: TPC-B (sort of)
+scaling factor: 100
+query mode: simple
+number of clients: 10
+number of threads: 2
+number of transactions per client: 10000
+number of transactions actually processed: 100000/100000
+tps = 1389.579317 (including connections establishing)
+tps = 1389.954820 (excluding connections establishing)
+
+
+new setting: 
+shared_buffers = 512MB 
+work_mem = 128kB 
+maintenance_work_mem = 32GB
+checkpoint_segments = 16 
+
+postgres$ pgbench -c 10 -j 2 -t 10000 bench
+starting vacuum...end.
+transaction type: TPC-B (sort of)
+scaling factor: 100
+query mode: simple
+number of clients: 10
+number of threads: 2
+number of transactions per client: 10000
+number of transactions actually processed: 100000/100000
+tps = 2668.547459 (including connections establishing)
+tps = 2670.001784 (excluding connections establishing)
+
+even better 
+
+
+shared_buffers = 512MB
+work_mem = 128kB                                # min 64kB
+maintenance_work_mem = 32GB 
+checkpoint_segments = 32 
+
+postgres$ pgbench -c 10 -j 2 -t 10000 bench
+starting vacuum...end.
+transaction type: TPC-B (sort of)
+scaling factor: 100
+query mode: simple
+number of clients: 10
+number of threads: 2
+number of transactions per client: 10000
+number of transactions actually processed: 100000/100000
+tps = 3864.630048 (including connections establishing)
+tps = 3867.627659 (excluding connections establishing)
