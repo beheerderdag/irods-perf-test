@@ -14,7 +14,7 @@ The scripts here will create the test files and run the irods operations. I also
 * To better organize and manage the test create a new collection and user. I also disbaled any replication and compound resource settings to keep the structure simple. 
 
 
-## Running the tests
+## Running the iput tests
 
 Here is an example of measuring iput for 1000 files of 1KB size. 
 
@@ -82,3 +82,46 @@ Thu Nov 23 12:54:58 CET 2017
 iput 1000 files test
 23.87
 ```
+You can repeat the test with a different number of file count and keep collecting the data in this manner. 
+
+## Add some metadata 
+
+We run a script that adds random metadata per file. We measure this time. 
+```
+$ /usr/bin/time -f "%e" sh add_meta_data.sh test.1000 color red
+150.82
+```
+
+You can speed this time with a wild card 
+
+```
+$ /usr/bin/time -f "%e" imeta addw -d test.1000/% color green 
+AVU added to 1000 data-objects
+2.51
+```
+
+Add different metadata name and value per file to make this more interesting: 
+
+```
+$ for i in $(seq 1 1000); do imeta addw -d test.1000/% mymetadataname mymetadatavalue.$i mymetadataunit.$i ; done
+AVU added to 1000 data-objects
+AVU added to 1000 data-objects
+AVU added to 1000 data-objects
+AVU added to 1000 data-objects
+AVU added to 1000 data-objects
+AVU added to 1000 data-objects
+....
+
+```
+## Measure iquest performance 
+
+```
+$ date ;  echo  "== count all metadata == "  ; /usr/bin/time -f "%e" iquest "select count(META_DATA_ATTR_VALUE)"
+Thu Nov 23 16:28:40 CET 2017
+== Q3  count all metadata == 
+META_DATA_ATTR_VALUE = 400045
+------------------------------------------------------------
+0.27
+```
+
+
