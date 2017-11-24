@@ -4,15 +4,13 @@ iRODS performance test scripts
 This is a collection of scripts and procedures for running various iRODS commands (such as iput, iquest) and recording the timing information. The goal is to understand how iRODs is performing in various cases. I also provide some queries and configuration information regarding postgres. 
 
 ## Getting Started
-The scripts here will create the test files and run the irods operations. I also describe the operations in detail so one can run them without the scripts as well. 
-
+I have provided some scripts and also raw test data based on my run. The basic idea is create lots of small files and run various operations. 
 
 ### Prerequisites
 * Working irods installation. 
 * Enough disk space (this depends on how many files and how many tests you want to run). 
 * Have enough knowledge about the hardware, OS, and database settings. 
 * To better organize and manage the test create a new collection and user. I also disbaled any replication and compound resource settings to keep the structure simple. 
-
 
 ## Running the iput tests
 
@@ -21,7 +19,6 @@ Here is an example of measuring iput for 1000 files of 1KB size.
 ```
 $ sh maketestfile.sh 
 Usage: maketestfile.sh <number_of_files> <dir_name> <file_size_in_kb>
-
 
 $ sh maketestfile.sh 1000 test.1000 1
 Creating 1000 files of size 1kb in directory
@@ -133,7 +130,7 @@ sh run-iquest-test.sh test-run
 
 ## Table size 
 
-As I was adding more and more files to irods via iput I was also keep track of various table size growth, in particular the r_data_main table size. pg_total_relation_size index+table. 
+As I was adding more and more files to irods via iput I was also keeping track of various table size growth, in particular the r_data_main table size. pg_total_relation_size index+table. You can do this via postgres commands. For my tests, I recorded the table size of before and after running a test. 
 
 ```
 
@@ -148,4 +145,5 @@ ICAT=# SELECT pg_size_pretty(pg_total_relation_size('"public"."r_data_main"'));
 ----------------
  2885 MB
  ```
- 
+ ## Shared buffer usage 
+ This is understanding how postgres is behaving while certain irods operation is performing. I installed the pg_buffercache extension 
