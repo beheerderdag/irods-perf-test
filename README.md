@@ -14,7 +14,37 @@ I have provided some scripts and also raw test data based on my run. The basic i
 
 ## Running the iput tests
 
-Here is an example of measuring iput for 1000 files of 1KB size. 
+Here is an example of measuring iput for 300 files of 1KB size. The [runiputtest.sh](https://github.com/beheerderdag/irods-perf-test/blob/master/test-scripts/runiputtest.sh) takes several arguments and calls [maketestfile.sh](https://github.com/beheerderdag/irods-perf-test/blob/master/test-scripts/maketestfile.sh) and prepares the directories with numbers of defined by the user then construcs the iput command and saves the timing information of the said iput command in a output file.  
+
+```
+sharifi$ sh runiputtest.sh 
+Usage: runiputtest.sh <iput_commands_to_run> <number_of_files> <dir_name> <file_size_in_kb> <out_put_file_name>
+
+sharifi$ sh runiputtest.sh "iput -r -b" 300 test.300 1 test.300.out 
+Creating 300 files of size 1kb in directory
+1
+2
+3
+4
+5
+6
+7
+[...]
+296
+297
+298
+299
+--- Timing iput -r -b of 300 files ---- 
+Running iput -r -b test.300....
+
+sharifi$ cat test.300.out 
+--- Timing iput -r -b of 300 files ---- 
+start:  Fri Nov 24 15:06:31 CET 2017
+timing: 7.32
+end:    Fri Nov 24 15:06:38 CET 2017
+
+```
+
 
 ```
 $ sh maketestfile.sh 
@@ -83,34 +113,7 @@ You can repeat this test with a different file count, size and keep collecting t
 
 Using the script.... 
 
-```
-sharifi$ sh runiputtest.sh 
-Usage: runiputtest.sh <iput_commands_to_run> <number_of_files> <dir_name> <file_size_in_kb> <out_put_file_name>
 
-sharifi$ sh runiputtest.sh "iput -r -b" 300 test.300 1 test.300.out 
-Creating 300 files of size 1kb in directory
-1
-2
-3
-4
-5
-6
-7
-[...]
-296
-297
-298
-299
---- Timing iput -r -b of 300 files ---- 
-Running iput -r -b test.300....
-
-sharifi$ cat test.300.out 
---- Timing iput -r -b of 300 files ---- 
-start:  Fri Nov 24 15:06:31 CET 2017
-timing: 7.32
-end:    Fri Nov 24 15:06:38 CET 2017
-
-```
 
 ## Add some metadata 
 
