@@ -146,4 +146,4 @@ ICAT=# SELECT pg_size_pretty(pg_total_relation_size('"public"."r_data_main"'));
  2885 MB
  ```
  ## Shared buffer usage 
- This is understanding how postgres is behaving while certain irods operation is performing. I installed the pg_buffercache extension 
+ This is understanding how postgres is behaving while certain irods operation is performing. I installed the pg_buffercache extension to track this. 
