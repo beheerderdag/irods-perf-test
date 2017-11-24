@@ -81,6 +81,37 @@ iput 1000 files test
 ```
 You can repeat this test with a different file count, size and keep collecting the data in this manner. 
 
+Using the script.... 
+
+```
+sharifi$ sh runiputtest.sh 
+Usage: runiputtest.sh <iput_commands_to_run> <number_of_files> <dir_name> <file_size_in_kb> <out_put_file_name>
+
+sharifi$ sh runiputtest.sh "iput -r -b" 300 test.300 1 test.300.out 
+Creating 300 files of size 1kb in directory
+1
+2
+3
+4
+5
+6
+7
+[...]
+296
+297
+298
+299
+--- Timing iput -r -b of 300 files ---- 
+Running iput -r -b test.300....
+
+sharifi$ cat test.300.out 
+--- Timing iput -r -b of 300 files ---- 
+start:  Fri Nov 24 15:06:31 CET 2017
+timing: 7.32
+end:    Fri Nov 24 15:06:38 CET 2017
+
+```
+
 ## Add some metadata 
 
 We run a script that adds random metadata per file. We measure this time. 
