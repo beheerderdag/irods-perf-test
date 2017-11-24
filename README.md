@@ -18,7 +18,8 @@ Here is an example of measuring iput for 300 files of 1KB size. The [runiputtest
 
 ```
 sharifi$ sh runiputtest.sh 
-Usage: runiputtest.sh <iput_commands_to_run> <number_of_files> <dir_name> <file_size_in_kb> <out_put_file_name>
+Usage: runiputtest.sh <iput_commands_to_run> <number_of_files> <dir_name> 
+<file_size_in_kb> <out_put_file_name>
 
 sharifi$ sh runiputtest.sh "iput -r -b" 300 test.300 1 test.300.out 
 Creating 300 files of size 1kb in directory
@@ -45,6 +46,7 @@ end:    Fri Nov 24 15:06:38 CET 2017
 
 ```
 
+Of course this can be done without the script. 
 
 ```
 $ sh maketestfile.sh 
@@ -52,6 +54,8 @@ Usage: maketestfile.sh <number_of_files> <dir_name> <file_size_in_kb>
 
 $ sh maketestfile.sh 1000 test.1000 1
 Creating 1000 files of size 1kb in directory
+....
+
 sharifi$ /usr/bin/time -f "%e" iput -r -b -v test.1000 
 C- /SURFsaraTest01/home/perf/test.1000:
 C- /SURFsaraTest01/home/perf/test.1000:
@@ -111,9 +115,6 @@ iput 1000 files test
 ```
 You can repeat this test with a different file count, size and keep collecting the data in this manner. 
 
-Using the script.... 
-
-
 
 ## Add some metadata 
 
@@ -161,13 +162,11 @@ You can use the script I have here to run all the iquest commands and it will sa
 sh run-iquest-test.sh test-run
 ```
 
-
 ## Table size 
 
 As I was adding more and more files to irods via iput I was also keeping track of various table size growth, in particular the r_data_main table size. pg_total_relation_size index+table. You can do this via postgres commands. For my tests, I recorded the table size of before and after running a test. 
 
 ```
-
 ICAT=# SELECT pg_size_pretty(pg_relation_size('"public"."r_data_main"'));
  pg_size_pretty 
 ----------------
