@@ -9,7 +9,7 @@ dir=$2
 size=$3
 i=0
 mkdir $2; 
-echo "Creating $end files of size $3kb in directory"
+echo "Creating $end files of size $3kb in directory $2"
 while [ $i -lt $end ]
   do
   echo $i
