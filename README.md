@@ -15,7 +15,7 @@ The basic idea of this test is to create lots (from 100,000 to 1 or 2 millions) 
 
 ## Running the iput tests
 
-Here is an example of measuring iput for 300 files of 1KB size. The [runiputtest.sh](https://github.com/beheerderdag/irods-perf-test/blob/master/test-scripts/runiputtest.sh) takes several arguments and calls [maketestfile.sh](https://github.com/beheerderdag/irods-perf-test/blob/master/test-scripts/maketestfile.sh) which prepares the directories with numbers of files defined by the user. Based on the user input the script also constructs the full iput command, executes it then saves the timing information (using /usr/bin/time) of the aforementioned iput command in an output file.  
+Here is an example of measuring iput for 300 files of 1KB size. The [runiputtest.sh](https://github.com/beheerderdag/irods-perf-test/blob/master/test-scripts/runiputtest.sh) takes several arguments and calls [maketestfile.sh](https://github.com/beheerderdag/irods-perf-test/blob/master/test-scripts/maketestfile.sh) which prepares the working directory containing number of files defined by the user. Based on the user input the script also constructs the full iput command, executes it then saves the timing information (using /usr/bin/time) of the aforementioned iput command in an output file.  
 
 Example: 
 
