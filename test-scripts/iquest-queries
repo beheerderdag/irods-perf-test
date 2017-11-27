@@ -1,0 +1,17 @@
+# change the metadata names and values according to your tests. 
+Q1. iquest "select count(DATA_NAME)" 
+Q2. iquest "SELECT count(USER_NAME)" 
+Q3. iquest "select count(META_DATA_ATTR_NAME)" 
+Q4. iquest "select sum(DATA_SIZE) where COLL_NAME = ’/SURFsaraTest01/home/perf/100k’ " 
+Q5. iquest --no-page "SELECT count(DATA_NAME) WHERE DATA_PATH like ’/eudatCache/Vault/PerfResc/home/perf/200k%’ " 
+Q6. iquest "SELECT DATA_NAME, DATA_CHECKSUM, DATA_VERSION, DATA_PATH, DATA_COLL ID, DATA_RESC_ NAME, DATA_STATUS WHERE DATA_PATH like ’%file.1%’ " 
+Q7. iquest "SELECT DATA_NAME, COLL_NAME, DATA_REPL_NUM, DATA_SIZE, order(DATA_CREATE_TIME)" 
+Q8. iquest "SELECT META_DATA_ATTR_NAME" 
+Q9. iquest "SELECT META_DATA_ATTR_NAME , META_DATA_ATTR_VALUE where META_DATA_ATTR_VALUE like ‘%21.%’”
+Q10. iquest "SELECT DATA_PATH WHERE DATA_PATH like ’%9999%’ || like ’%2%’ " 
+Q11. iquest "select COLL_NAME, DATA_NAME where COLL_NAME like ’%perf%’ AND RESC_NAME = ’PerfResc’" 
+Q12. iquest "SELECT META_DATA_ATTR_NAME , META_DATA_ATTR_VALUE where META_DATA_ATTR_VALUE like ’%21.%’ || like ’True’" 
+Q13. iquest "SELECT COLL_NAME, META_COLL_ATTR_VALUE WHERE COLL_NAME like ’%/home/test/%’" 
+Q14. iquest "SELECT COUNT(COLL_NAME) FROM R_COLL_MAIN WHERE COLL_NAME LIKE ’/more/filepath/home/%’ "; 
+Q15. iquest "select DATA_PATH where META_DATA_ATTR_NAME = ’color’" 
+Q16. iquest "select DATA_PATH where META_DATA_ATTR_VALUE = ’blue’"
