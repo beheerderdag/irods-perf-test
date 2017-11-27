@@ -1,16 +1,17 @@
 # irods-perf-test
 iRODS performance test scripts
 
-This is a collection of scripts and procedures for running various iRODS commands (such as iput, iquest) and recording the timing information. The goal is to understand how iRODs is performing in various cases. I also provide some queries and configuration information regarding database settings (postgres in this case). 
+This is a collection of scripts and procedures for running various iRODS commands (such as iput, iquest) and recording the timing information. The goal is to understand how iRODS is performing in various cases. I here provide some scripts, raw test data based on my various runs, some database queries to understand database performance and configuration information regarding database settings (postgres in this case). 
 
 ## Getting Started
-I have provided some scripts and also raw test data based on my various runs. The basic idea is create lots of small files and run iput/iget and record the time. 
+The basic idea of this test is to create lots (from 100,000 to 1 or 2 millions) of small files and run iput/iget and record the time. 
 
 ### Prerequisites
 * Working irods installation. 
 * Enough disk space (this depends on how many files and how many tests you want to run). 
-* Enough knowledge about the hardware, OS, and database settings. 
-* Organize and manage the test by creating a new collection and user. I usually disbale any replication and compound resource settings to keep the structure simple. 
+* Enough knowledge about basic scripting, hardware, OS, and database settings. 
+* Ability to organize and manage the test by creating a new collection and user. I usually disbale any replication and compound resource settings to keep the structure simple. 
+* Admin access to irods and database. 
 
 ## Running the iput tests
 
