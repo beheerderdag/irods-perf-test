@@ -24,7 +24,7 @@ Usage: runiputtest.sh <iput_commands_to_run> <number_of_files> <dir_name>
 <file_size_in_kb> <out_put_file_name>
 
 sharifi$ sh runiputtest.sh "iput -r -b" 300 test.300 1 test.300.out 
-Creating 300 files of size 1kb in directory
+Creating 300 files of size 1kb in directory test.300 
 1
 2
 3
@@ -55,7 +55,7 @@ $ sh maketestfile.sh
 Usage: maketestfile.sh <number_of_files> <dir_name> <file_size_in_kb>
 
 $ sh maketestfile.sh 1000 test.1000 1
-Creating 1000 files of size 1kb in directory
+Creating 1000 files of size 1kb in directory test.1000
 ....
 
 sharifi$ /usr/bin/time -f "%e" iput -r -b -v test.1000 
@@ -105,7 +105,7 @@ Bulk upload 50 files.
 ```
 23.80 seconds is the time we want to capture. 
 
-If you want to capture this in a file to keep the record run the following (redirect the output to a file and omit the verbose output: 
+Run the following If you want to capture this in a file to keep the record (redirect the output to a file and omit the verbose output): 
 
 ``` 
 $ date >> mytest.out ; echo "iput 1000 files test" >> mytest.out ; /usr/bin/time -f "%e" iput -r -b test.1000 2>>mytest.out 
