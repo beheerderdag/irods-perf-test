@@ -20,11 +20,11 @@ Here is an example of measuring iput for 300 files of 1KB size. The [runiputtest
 Example: 
 
 ```
-sharifi$ sh runiputtest.sh 
+$ sh runiputtest.sh 
 Usage: runiputtest.sh <iput_commands_to_run> <number_of_files> <dir_name> 
 <file_size_in_kb> <out_put_file_name>
 
-sharifi$ sh runiputtest.sh "iput -r -b" 300 test.300 1 test.300.out 
+$ sh runiputtest.sh "iput -r -b" 300 test.300 1 test.300.out 
 Creating 300 files of size 1kb in directory test.300 
 1
 2
@@ -41,7 +41,7 @@ Creating 300 files of size 1kb in directory test.300
 --- Timing iput -r -b of 300 files ---- 
 Running iput -r -b test.300....
 
-sharifi$ cat test.300.out 
+$ cat test.300.out 
 --- Timing iput -r -b of 300 files ---- 
 start:  Fri Nov 24 15:06:31 CET 2017
 timing: 7.32
@@ -59,7 +59,7 @@ $ sh maketestfile.sh 1000 test.1000 1
 Creating 1000 files of size 1kb in directory test.1000
 ....
 
-sharifi$ /usr/bin/time -f "%e" iput -r -b -v test.1000 
+$ /usr/bin/time -f "%e" iput -r -b -v test.1000 
 C- /SURFsaraTest01/home/perf/test.1000:
 C- /SURFsaraTest01/home/perf/test.1000:
 Bulk upload 50 files.
