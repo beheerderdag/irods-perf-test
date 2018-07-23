@@ -67,3 +67,6 @@ KiB Swap:   524284 total,   524284 free,        0 used. 63573016 avail Mem
 ```
 
 
+overview of queries per second 
+
+ 
