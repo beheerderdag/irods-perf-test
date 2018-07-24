@@ -70,4 +70,6 @@ KiB Swap:   524284 total,   524284 free,        0 used. 63573016 avail Mem
 overview of queries per second 
 
  
-![Overview] (https://raw.githubusercontent.com/beheerderdag/irods-perf-test/master/cockroachdb-overview.png)
+![Overview] (https://raw.githubusercontent.com/beheerderdag/irods-perf-test/master/cockroachdb-overview.png | width=50)
+
+[[https://raw.githubusercontent.com/beheerderdag/irods-perf-test/master/cockroachdb-overview.png]]
